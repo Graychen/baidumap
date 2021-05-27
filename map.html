@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+	#allmap {height: 100%;width:100%;overflow: hidden;}
+	#result {width:100%;font-size:12px;}
+	dl,dt,dd,ul,li{
+		margin:0;
+		padding:0;
+		list-style:none;
+	}
+	dt{
+		font-size:14px;
+		font-family:"微软雅黑";
+		font-weight:bold;
+		border-bottom:1px dotted #000;
+		padding:5px 0 5px 5px;
+		margin:5px 0;
+	}
+	dd{
+		padding:5px 0 0 5px;
+	}
+	li{
+		line-height:28px;
+	}
+	</style>
+	<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=SgP2iAzEAibHwy5wZj8lrQpG8BOt4QIW"></script>
+	<script type="text/javascript" src="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+	<link rel="stylesheet" href="https://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+	<title>带检索功能的信息窗口</title>
+</head>
+<body>
+	<div id="allmap">	
+	</div>
+	<div id="result">
+		<input type="button" value="万象城" onclick="searchInfoWindow.open(marker);"/>
+	</div>
+<script type="text/javascript">
+	// 百度地图API功能
+    var map = new BMap.Map('allmap');
+    var poi = new BMap.Point(120.690634734,28.002837594);
+    map.centerAndZoom(poi, 15);
+    map.enableScrollWheelZoom(true);
+    // 创建点标记
+// 在地图上添加点标记
+    var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '简介：南白象街道服务中心' +
+                  '</div>';
+
+
+    //创建检索信息窗口对象
+    var searchInfoWindow = null;
+	searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+			title  : "万象城",      //标题
+			width  : 290,             //宽度
+			height : 105,              //高度
+			panel  : "panel",         //检索结果面板
+			enableAutoPan : true,     //自动平移
+			searchTypes   :[
+				BMAPLIB_TAB_TO_HERE,  //到这里去
+			]
+		});
+    var marker = new BMap.Marker(poi); //创建marker对象
+    marker.addEventListener("click", function(e){
+	    searchInfoWindow.open(marker);
+    })
+    //创建检索信息窗口对象
+    var searchInfoWindow2 = null;
+	searchInfoWindow2 = new BMapLib.SearchInfoWindow(map, content, {
+			title  : "南白象街道党群服务中心",      //标题
+			width  : 290,             //宽度
+			height : 105,              //高度
+			panel  : "panel",         //检索结果面板
+			enableAutoPan : true,     //自动平移
+			searchTypes   :[
+				BMAPLIB_TAB_TO_HERE,  //到这里去
+			]
+		});
+    var marker2 = new BMap.Marker(new BMap.Point(120.70, 28.00));
+    marker2.addEventListener("click", function(e){
+	    searchInfoWindow2.open(marker2);
+    })
+
+    var searchInfoWindow3 = null;
+	searchInfoWindow3 = new BMapLib.SearchInfoWindow(map, content, {
+			title  : "谢灵运公园",      //标题
+			width  : 290,             //宽度
+			height : 105,              //高度
+			panel  : "panel",         //检索结果面板
+			enableAutoPan : true,     //自动平移
+			searchTypes   :[
+				BMAPLIB_TAB_TO_HERE,  //到这里去
+			]
+		});
+    var marker3 = new BMap.Marker(new BMap.Point(120.70, 28.004));
+    marker3.addEventListener("click", function(e){
+	    searchInfoWindow3.open(marker3);
+    })
+    var searchInfoWindow4 = null;
+    var marker4 = new BMap.Marker(new BMap.Point(120.70, 28.008));
+	searchInfoWindow4 = new BMapLib.SearchInfoWindow(map, content, {
+			title  : "白象塔",      //标题
+			width  : 290,             //宽度
+			height : 105,              //高度
+			panel  : "panel",         //检索结果面板
+			enableAutoPan : true,     //自动平移
+			searchTypes   :[
+				BMAPLIB_TAB_TO_HERE,  //到这里去
+			]
+		});
+    marker4.addEventListener("click", function(e){
+	    searchInfoWindow4.open(marker4);
+    })
+map.addOverlay(marker);
+map.addOverlay(marker2);
+map.addOverlay(marker3);
+map.addOverlay(marker4);
+var pStart = new BMap.Point(119.70, 28);
+var pEnd = new BMap.Point(120.70, 29.008);
+var bounds = new BMap.Bounds(new BMap.Point(pStart.lng, pEnd.lat), new BMap.Point(pEnd.lng, pStart.lat));
+var imgOverlay = new BMap.GroundOverlay(bounds, {
+    type: 'image',
+    url: 'http://ww1.sinaimg.cn/large/6919c235ly1gqvybaoe2sj231d31dqko.jpg',
+    opacity: 1
+});
+map.addOverlay(imgOverlay);
+    /*
+	function openInfoWindow3() {
+		searchInfoWindow3.open(new BMap.Point(116.328852,40.057031)); 
+    }
+    */
+</script>
+</body>
+</html>
